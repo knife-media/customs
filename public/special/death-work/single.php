@@ -23,9 +23,11 @@ get_header(); ?>
         <article <?php post_class('post'); ?> id="post-<?php the_ID(); ?>">
             <div class="entry-header">
                 <?php
+                    $slug = basename(__DIR__);
+
                     printf(
                         '<div class="entry-header__image"><img src="%s" alt=""></div>',
-                        plugin_dir_url(__FILE__) . 'images/logo-black.svg',
+                        content_url("customs/special/{$slug}/images/logo-black.svg")
                     );
 
                     the_title(

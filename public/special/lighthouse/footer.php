@@ -19,9 +19,11 @@
         </svg>
 
         <?php
+            $slug = basename(__DIR__);
+
             printf(
                 '<img class="footer__logo-special" src="%s" alt="">',
-                plugin_dir_url(__FILE__) . 'images/logo.png'
+                content_url("customs/special/{$slug}/images/logo.png")
             );
         ?>
     </div>
@@ -36,7 +38,7 @@
         <?php
             printf(
                 '<a class="button" href="https://www.childrenshospice.ru/help/" target="_blank">%s</a>',
-                _x('Помочь прямо сейчас', 'special: lighthouse', 'knife-theme')
+                _x('Помочь прямо сейчас', 'special: lighthouse', 'knife-customs')
             );
         ?>
     </div>

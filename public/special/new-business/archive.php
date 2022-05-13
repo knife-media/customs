@@ -10,6 +10,8 @@ get_header(); ?>
     <div class="caption">
         <div class="caption__description">
             <?php
+                $slug = basename(__DIR__);
+
                 printf(
                     '<h1>%s</h1>',
                     _x('Это бизнес.<br> И это личное', 'special: new-business', 'knife-customs')
@@ -17,7 +19,7 @@ get_header(); ?>
 
                 printf(
                     '<img src="%s" alt="">',
-                    plugin_dir_url(__FILE__) . 'images/spinner.png'
+                    content_url("customs/special/{$slug}/images/spinner.png")
                 );
             ?>
         </div>
@@ -27,7 +29,7 @@ get_header(); ?>
         <?php
             while(have_posts()) : the_post();
 
-                include plugin_dir_path(__FILE__) . 'loop.php';
+                include __DIR__ . '/loop.php';
 
             endwhile;
         ?>

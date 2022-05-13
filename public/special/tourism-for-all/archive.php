@@ -22,7 +22,7 @@ get_header(); ?>
         <?php
             while(have_posts()) : the_post();
 
-                include plugin_dir_path(__FILE__) . 'loop.php';
+                include __DIR__ . '/loop.php';
 
             endwhile;
         ?>

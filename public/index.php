@@ -53,7 +53,7 @@ class Knife_Customs {
         }
 
         // Get current post name
-        $include = plugin_dir_path(__FILE__) . "single/{$object->post_name}";
+        $include = __DIR__ . "/single/{$object->post_name}";
 
         // Let's add the file if exists
         if(file_exists($include . '/functions.php')) {
@@ -73,7 +73,7 @@ class Knife_Customs {
         $term = get_queried_object();
 
         if(!empty($term->slug)) {
-            $include = plugin_dir_path(__FILE__) . "special/{$term->slug}";
+            $include = __DIR__ . "/special/{$term->slug}";
 
             if(file_exists($include . '/functions.php')) {
                 include_once $include . '/functions.php';
@@ -105,7 +105,7 @@ class Knife_Customs {
                 $term = get_term($ancestors[0], 'special');
             }
 
-            $include = plugin_dir_path(__FILE__) . "special/{$term->slug}";
+            $include = __DIR__ . "/special/{$term->slug}";
 
             if(file_exists($include . '/functions.php')) {
                 include_once $include . '/functions.php';

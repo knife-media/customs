@@ -13,8 +13,11 @@ if (!defined('WPINC')) {
 add_action('wp_enqueue_scripts', function() {
     $version = '1.0';
 
+    // Get page slug
+    $slug = basename(__DIR__);
+
     // Get scripts
-    $scripts = plugin_dir_url(__FILE__) . 'scripts.min.js';
+    $scripts = content_url("customs/single/{$slug}/scripts.min.js");
 
     if(defined('WP_DEBUG') && true === WP_DEBUG) {
         $version = date('U');
@@ -28,7 +31,7 @@ add_action('wp_enqueue_scripts', function() {
     $secret = empty(KNIFE_REQUESTS['secret']) ? '' : KNIFE_REQUESTS['secret'];
 
     // Let's add scripts
-    wp_enqueue_script('knife-custom-' . basename(__DIR__), $scripts, ['knife-theme'], $version, true);
+    wp_enqueue_script('knife-custom-' . $slug, $scripts, ['knife-theme'], $version, true);
 
     $fields = [
         'name' => [
@@ -78,5 +81,5 @@ add_action('wp_enqueue_scripts', function() {
     ];
 
     // add user form fields
-    wp_localize_script('knife-custom-' . basename(__DIR__), 'knife_theme_custom', $options);
+    wp_localize_script('knife-custom-' . $slug, 'knife_theme_custom', $options);
 });

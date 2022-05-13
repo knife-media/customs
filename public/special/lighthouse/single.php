@@ -11,9 +11,11 @@ get_header(); ?>
         <div class="caption">
             <div class="caption__description">
                 <?php
+                    $slug = basename(__DIR__);
+
                     printf(
                         '<img src="%s" alt="">',
-                        plugin_dir_url(__FILE__) . 'images/logo.png'
+                        content_url("customs/special/{$slug}/images/logo.png")
                     );
 
                     printf(
@@ -67,4 +69,4 @@ get_header(); ?>
     <?php endwhile; ?>
 </div>
 
-<?php include plugin_dir_path(__FILE__) . 'footer.php';
+<?php include __DIR__ . '/footer.php';
