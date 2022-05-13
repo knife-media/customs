@@ -1,12 +1,11 @@
 {
-  "name": "knife-theme",
-  "version": "1.15.17",
+  "name": "knife-customs",
   "author": "Anton Lukin",
-  "description": "Simple modern WordPress theme for community blog",
+  "description": "Upgrade posts and archives with custom functions and styles",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/knife-media/knife-theme.git"
+    "url": "https://github.com/knife-media/knife-customs.git"
   },
   "license": "MIT",
   "devDependencies": {
