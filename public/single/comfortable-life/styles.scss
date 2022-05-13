@@ -1,0 +1,30 @@
+$color-white: #ffffff;
+$color-content: #00b957;
+
+.entry-header {
+  color: $color-white;
+  background-color: $color-content;
+
+  .entry-header__info {
+    color: $color-white;
+  }
+
+  .entry-header__lead a {
+    color: $color-white;
+  }
+}
+
+.entry-content {
+  background-color: $color-content;
+  padding-bottom: 2rem;
+
+  .figure--flipper aside {
+    font-size: 1.125rem;
+    line-height: 1.375;
+
+    @media screen and (max-width: 767px) {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+$color-white: #ffffff;
+
+/**
+ * caption styles
+ */
+.caption .caption__description {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  max-width: 100%;
+  margin: 1rem 0 0;
+  padding: 0 1rem;
+  text-align: center;
+
+  color: #f7333f;
+  background: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 0 1.5rem #a90711;
+}
+
+.caption .caption__description h1 {
+  margin-bottom: 1rem;
+
+  font-size: 1.25rem;
+  line-height: 1.125;
+  text-transform: uppercase;
+}
+
+  @media screen and (max-width: 767px) {
+    .caption .caption__description h1 {
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .caption .caption__description h1 {
+      font-size: .875rem;
+    }
+  }
+
+.caption .caption__description img {
+  width: 7rem;
+  height: auto;
+  margin-bottom: .75rem;
+}
+  @media screen and (max-width: 767px) {
+    .caption .caption__description img {
+      width: 5rem;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .caption .caption__description img {
+      width: 4rem;
+    }
+  }
+
+  .footer {
+    .footer__copy a {
+      color: $color-white;
+      border-bottom: solid 1px;
+
+      &:hover {
+        border-bottom-color: transparent;
+      }
+    }
+  }

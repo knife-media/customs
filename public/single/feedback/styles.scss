@@ -1,0 +1,217 @@
+$width-content: 40rem;
+$width-site: 80rem;
+$width-wide: 52.25rem;
+
+$font-regular: "Formular", sans-serif;
+$font-serif: "PT Serif", serif;
+$font-monospace: "Monaco", "Roboto Mono", monospace;
+
+$color-black: #000000;
+$color-white: #ffffff;
+$color-text: #111111;
+
+$color-background: #daeff7;
+$color-selected: #ffc7a6;
+$color-checkbox: #fff2b4;
+$color-button: #ff9476;
+
+@mixin submit-button {
+  will-change: transform;
+
+  &[data-loading] {
+    pointer-events: none;
+
+    background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.2) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+    background-size: 4rem;
+    animation: loading-button 0.5s linear infinite;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.entry-content {
+  max-width: $width-wide;
+
+  color: $color-text;
+  background-color: $color-background;
+
+  border-radius: 0.75rem;
+
+  h1 {
+    font-size: 2.75rem;
+
+    @media screen and (max-width: 767px) {
+      font-size: 2.25rem;
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 0.75rem;
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 1rem;
+      line-height: 1.375;
+    }
+  }
+}
+
+.figure--formats {
+  display: block;
+
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+
+    margin: 1rem 0 0;
+    padding: 0;
+
+    list-style: none;
+
+    li {
+      display: block;
+      cursor: pointer;
+      user-select: none;
+
+      margin: 0 0.375rem 0.375rem 0;
+      padding: 0.5rem 1rem;
+
+      font-weight: 500;
+
+      color: $color-text;
+      background-color: $color-checkbox;
+      border-radius: 0.5rem;
+
+      transition: 0.375s background;
+
+      &:hover {
+        background-color: lighten($color-selected, 5);
+      }
+
+      &[data-selected] {
+        background-color: $color-selected;
+      }
+    }
+  }
+}
+
+.figure--brief {
+  display: block;
+
+  form {
+    display: block;
+    position: relative;
+
+    margin: 1rem 0 0;
+  }
+
+  textarea {
+    display: block;
+    outline: none;
+    resize: none;
+
+    width: 100%;
+    height: auto;
+
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background-color: $color-white;
+    border-radius: 0.5rem;
+  }
+
+  button {
+    display: inline-block;
+
+    min-width: 16rem;
+    max-width: 100%;
+    padding: 1rem;
+
+    font-weight: 500;
+    font-size: 1.375rem;
+
+    background-color: $color-button;
+    border-radius: 0.5rem;
+
+    @include submit-button;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 1.25rem;
+    }
+
+    @media screen and (max-width: 479px) {
+      width: 100%;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.figure--callback {
+  display: block;
+
+  form {
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+
+    margin: 1rem 0 0;
+    padding: 0.25rem;
+
+    color: $color-text;
+    background-color: $color-white;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 479px) {
+      flex-flow: row wrap;
+    }
+  }
+
+  input {
+    display: block;
+    flex: 1 1 100%;
+
+    padding: 0.75rem;
+  }
+
+  button {
+    display: block;
+    flex: 0 0 auto;
+
+    max-width: 100%;
+    padding: 0.75rem 1.5rem;
+
+    font-weight: 500;
+
+    background-color: $color-button;
+    border-radius: 0.5rem;
+
+    @include submit-button;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+
+    @media screen and (max-width: 479px) {
+      flex: 0 0 100%;
+    }
+  }
+}
