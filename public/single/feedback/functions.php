@@ -11,6 +11,9 @@ if (!defined('WPINC')) {
  * Add custom styles
  */
 add_action('wp_enqueue_scripts', function() {
+    $version = '1.§';
+
+    // Get page slug
     $slug = basename(__DIR__);
 
     // Get styles

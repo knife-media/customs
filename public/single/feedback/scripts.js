@@ -111,7 +111,7 @@
     const resizeForm = (text) => {
       window.setTimeout(() => {
         text.style.height = 'auto';
-        text.style.height = text.scrollHeight + 'px';
+        text.style.height = text.scrollHeight + 1 + 'px';
       }, 0);
     }
 
