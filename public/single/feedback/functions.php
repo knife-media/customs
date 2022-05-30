@@ -11,6 +11,9 @@ if (!defined('WPINC')) {
  * Add custom styles
  */
 add_action('wp_enqueue_scripts', function() {
+    $version = '1.1';
+
+    // Get page slug
     $slug = basename(__DIR__);
 
     // Get styles
@@ -18,9 +21,6 @@ add_action('wp_enqueue_scripts', function() {
 
     // Get scripts
     $scripts = content_url("customs/single/{$slug}/scripts.min.js");
-
-    // Set styles version
-    $version = wp_get_theme()->get('Version');
 
     if(defined('WP_DEBUG') && true === WP_DEBUG) {
         $version = date('U');

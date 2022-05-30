@@ -7,6 +7,6 @@ Auxiliary service for extending the posts and archives styles and scripts.
 Create `knife-customs.php` file in `wp-content/mu-plugins`:
 ```php
 <?php
-    include_once __DIR__ . '/customs/public/index.php';
+    include_once WP_CONTENT_DIR . '/customs/index.php';
 ```
-Clone `customs` directory to `wp-content/mu-plugins`.
+Clone `customs` directory to `wp-content/`.

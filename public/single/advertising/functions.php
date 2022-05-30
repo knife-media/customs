@@ -7,7 +7,6 @@ if (!defined('WPINC')) {
     die;
 }
 
-
 /**
  * Add custom scripts and styles
  */
