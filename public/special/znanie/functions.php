@@ -49,7 +49,7 @@ add_action('the_content', function($content) {
             '<figure class="figure figure--promo"><a class="button" href="%s">%s <strong>%s</strong></a>',
             esc_url(get_term_link($slug, 'special')),
             _x('Специальный проект', 'special: znanie', 'knife-customs'),
-            _x('общества Знание и Журнала «Нож»', 'special: znanie', 'knife-customs')
+            _x('общества «Знание» и Журнала «Нож»', 'special: znanie', 'knife-customs')
         );
 
         $content = $content . $promo_link;
