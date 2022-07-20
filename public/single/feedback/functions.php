@@ -11,7 +11,7 @@ if (!defined('WPINC')) {
  * Add custom styles
  */
 add_action('wp_enqueue_scripts', function() {
-    $version = '1.1';
+    $version = '1.2';
 
     // Get page slug
     $slug = basename(__DIR__);
@@ -54,7 +54,7 @@ add_action('wp_enqueue_scripts', function() {
     ];
 
     $brief = [
-        'name' => __('Как называется ваша компания?', 'knife-theme'),
+        'company' => __('Как называется ваша компания?', 'knife-theme'),
         'site' => __('Сайт компании или продукта', 'knife-theme'),
         'what' => __('Что вы хотите прорекламировать?', 'knife-theme'),
         'purpose' => __('Какова цель рекламной кампании?', 'knife-theme'),
@@ -62,7 +62,8 @@ add_action('wp_enqueue_scripts', function() {
         'budget' => __('Какой у вас бюджет?', 'knife-theme'),
         'similar' => __('Какие спецпроекты вам нравятся?', 'knife-theme'),
         'time' => __('Когда планируется рекламная кампания?', 'knife-theme'),
-        'contacts' => __('Как вас зовут и как с вами связаться?', 'knife-theme')
+        'name' => __('Как вас зовут?', 'knife-theme'),
+        'contacts' => __('Номер телефона и/или аккаунт в телеграме', 'knife-theme')
     ];
 
     $callback = [
@@ -73,6 +74,12 @@ add_action('wp_enqueue_scripts', function() {
     // Get current time stamp
     $timestamp = time();
 
+    $privacy = sprintf(
+        __('Отправляя данную форму, вы соглашаетесь с <a href="%s" target="_blank">пользовательским соглашением</a> и даёте своё согласие на обработку <a href="%s" target="_blank">персональных данных</a>.', 'knife-theme'),
+        get_permalink(get_page_by_path('user-agreement')),
+        get_permalink(get_page_by_path('privacy'))
+    );
+
     $options = [
         'ajaxurl' => '/requests',
         'nonce' => substr(sha1($secret . $timestamp), -12, 10),
@@ -80,6 +87,7 @@ add_action('wp_enqueue_scripts', function() {
         'button' => __('Отправить', 'knife-theme'),
         'success' => __('Сообщение отправлено', 'knife-theme'),
         'error' => __('Ошибка. Попробуйте позже', 'knife-theme'),
+        'privacy' => $privacy,
         'figure' => compact('formats', 'brief', 'callback')
     ];
 

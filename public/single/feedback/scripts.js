@@ -147,6 +147,11 @@
       });
     }
 
+    buildElement('h6', {
+      'parent': form,
+      'html': knife_theme_custom.privacy
+    });
+
     form.appendChild(submit);
 
     form.addEventListener('submit', (e) => {
