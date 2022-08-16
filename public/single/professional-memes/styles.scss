@@ -3,8 +3,9 @@ $color-header: #332851;
 $color-content: #b6a3cf;
 $color-aside: #ece9f1;
 
-
 .entry-header {
+  padding-bottom: 2rem;
+
   color: $color-white;
   background-color: $color-header;
 
@@ -14,6 +15,10 @@ $color-aside: #ece9f1;
 
   .entry-header__lead a {
     color: $color-white;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 1rem;
   }
 }
 

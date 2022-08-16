@@ -4,6 +4,8 @@ $color-header: #0b54a4;
 $color-content: #c5deea;
 
 .entry-header {
+  padding-bottom: 2rem;
+
   color: $color-white;
   background-color: $color-header;
 
@@ -17,6 +19,10 @@ $color-content: #c5deea;
 
    .entry-header__share {
     display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 1rem;
   }
 }
 

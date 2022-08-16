@@ -14,6 +14,8 @@ body {
 }
 
 .entry-header {
+  padding-bottom: 2rem;
+
   color: $color-black;
   background-color: $color-white;
 
@@ -23,6 +25,10 @@ body {
 
   .entry-header__lead a {
     color: $color-links;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 1rem;
   }
 }
 
