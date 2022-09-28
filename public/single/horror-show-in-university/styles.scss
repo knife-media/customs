@@ -1,0 +1,165 @@
+@font-face {
+  font-family: 'Hardpixel';
+  src: url("fonts/Hardpixel.woff2") format("woff2"),
+  url("fonts/Hardpixel.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+$color-text: #E2DBD4;
+$color-white: #ffffff;
+$color-title: #D1C89C;
+$color-content: #353036;
+$color-button: #506CC1;
+
+.entry-header {
+  color: $color-white;
+  background-color: $color-content;
+
+  .entry-header__info {
+    display: none;
+  }
+
+  .entry-header__share {
+    display: none;
+  }
+
+  .entry-header__lead {
+    color: $color-text;
+
+    p {
+      line-height: 1.5;
+      font-size: 1.25rem;
+      font-weight: 500;
+
+      @media screen and (max-width: 767px) {
+        font-size: 1rem;
+      }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .figure--outer {
+      width: 100%;
+      margin: 0 0 1.5rem;
+    }
+  }
+
+  .entry-header__title {
+    display: block;
+
+    margin-top: 0;
+    font-family: 'Hardpixel';
+    font-size: 2rem;
+    font-weight: 400;
+
+    line-height: 1.25;
+    text-transform: uppercase;
+
+    color: $color-title;
+
+    em {
+      display: block;
+
+      margin-top: 1rem;
+
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-family: inherit;
+
+      color: $color-text;
+    }
+
+    @media screen and (max-width: 1023px) {
+      margin-bottom: .75rem;
+      font-size: 1.875rem;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 1.5rem;
+      line-height: 1.375;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding-top: 2rem;
+  }
+}
+
+.entry-content {
+  display: block;
+
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  overflow: hidden;
+
+  color: $color-white;
+  background-color: $color-content;
+
+  .figure--frame {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .figure--frame .button {
+    display: inline-flex;
+    justify-content: center;
+
+    width: auto;
+    min-width: 0;
+    padding: 1rem 1.5rem;
+
+    color: $color-white;
+    background-color: $color-button;
+
+    text-align: center;
+
+    font-family: 'Hardpixel';
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    border: none;
+    border-radius: 4px;
+
+    @media screen and (max-width: 767px) {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.25rem;
+      line-height: 1.375;
+    }
+
+    @media screen and (max-width: 479px) {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.entry-header + .entry-content {
+  padding-top: 1rem;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 0;
+  }
+}
+
+.entry-footer {
+  display: none;
+}
