@@ -1,0 +1,9 @@
+$color-text: #111111;
+$color-white: #ffffff;
+
+.entry-quiz {
+  .entry-quiz__button {
+    color: $color-white;
+    background-color: $color-text;
+  }
+}
