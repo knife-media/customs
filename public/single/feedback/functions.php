@@ -63,7 +63,8 @@ add_action('wp_enqueue_scripts', function() {
         'similar' => __('Какие спецпроекты вам нравятся?', 'knife-theme'),
         'time' => __('Когда планируется рекламная кампания?', 'knife-theme'),
         'name' => __('Как вас зовут?', 'knife-theme'),
-        'contacts' => __('Номер телефона и/или аккаунт в телеграме', 'knife-theme')
+        'contacts' => __('Номер телефона и/или аккаунт в телеграме', 'knife-theme'),
+        'email' => __('Адрес электронной почты', 'knife-theme')
     ];
 
     $callback = [
