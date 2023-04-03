@@ -22,6 +22,10 @@ body {
   background-color: $color-common !important;
 }
 
+.backdrop {
+  display: none;
+}
+
 
 /**
  * caption styles

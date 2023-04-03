@@ -5,9 +5,13 @@ $font-special: 'Rubik', sans-serif;
 $color-white: #ffffff;
 $color-title: #79f4b5;
 
-body.is-archive {
+body {
   min-height: 100vh;
   background-image: linear-gradient(120deg, #1c37b2, #850190);
+}
+
+.backdrop {
+  display: none;
 }
 
 /**

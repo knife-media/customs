@@ -5,9 +5,13 @@ $font-monospace: "Monaco", "Roboto Mono", monospace;
 $color-white: #ffffff;
 $color-title: #f1bb0c;
 
-body.is-archive {
+body {
   min-height: 100vh;
   background-image: linear-gradient(to left bottom, #261a42, #483968);
+}
+
+.backdrop {
+  display: none;
 }
 
 /**

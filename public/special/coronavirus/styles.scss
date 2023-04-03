@@ -2,6 +2,10 @@ body {
   background: linear-gradient(37deg, rgba(167,51,158,1) 0%, rgba(243,2,65,1) 50%, rgba(255,204,67,1) 100%);
 }
 
+.backdrop {
+  display: none;
+}
+
 /**
  * caption styles
  */
