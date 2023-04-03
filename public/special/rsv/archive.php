@@ -17,7 +17,7 @@ get_header(); ?>
 
             printf(
                 '<img src="%s" alt="">',
-                content_url("customs/special/{$slug}/images/logo.png")
+                content_url("customs/special/{$slug}/images/rsv-logo.png")
             );
         ?>
     </div>
