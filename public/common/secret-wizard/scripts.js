@@ -33,9 +33,14 @@
 
     // Listen to esc key
     popup.addEventListener('keydown', (e) => {
-      if (e.key == 'Escape' && popup) {
-        document.body.removeChild(popup);
+      if (e.key != 'Escape') {
+        return;
       }
+
+      document.body.classList.add('is-wizard');
+
+      // Completely remove popup
+      document.body.removeChild(popup);
     });
 
     const closer = document.createElement('button');
