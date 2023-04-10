@@ -17,11 +17,21 @@ class Knife_Customs {
         // Load custom post functions
         add_action('wp', [__CLASS__, 'inject_customs']);
 
+        // Inject common functions
+        add_action('wp', [__CLASS__, 'inject_common'], 8);
+
         // Try to update special templates
         add_action('wp', [__CLASS__, 'inject_special_single'], 8);
 
-        // Try to update special  templates
+        // Try to update special templates
         add_action('wp', [__CLASS__, 'inject_special_archive'], 8);
+    }
+
+
+    /**
+     * Load common functions
+     */
+    public static function inject_common() {
     }
 
 
