@@ -2,7 +2,7 @@
   /**
    * Check if custom options defined
    */
-  if (typeof knife_theme_custom === 'undefined') {
+  if (typeof knife_custom_vacancy === 'undefined') {
     return false;
   }
 
@@ -14,7 +14,7 @@
   }
 
   // Check required ajaxurl
-  if (typeof knife_theme_custom.ajaxurl === 'undefined') {
+  if (typeof knife_custom_vacancy.ajaxurl === 'undefined') {
     return false;
   }
 
@@ -92,7 +92,7 @@
     }
 
     let submit = buildElement('button', {
-      'text': knife_theme_custom.button,
+      'text': knife_custom_vacancy.button,
       'attributes': {
         'type': 'submit'
       }
@@ -135,14 +135,14 @@
       e.preventDefault();
 
       let data = {
-        'nonce': knife_theme_custom.nonce,
-        'time': knife_theme_custom.time,
-        'heading': knife_theme_custom.heading,
+        'nonce': knife_custom_vacancy.nonce,
+        'time': knife_custom_vacancy.time,
+        'heading': knife_custom_vacancy.heading,
         'fields': [],
       };
 
-      if(knife_theme_custom.mention) {
-        data.mention = knife_theme_custom.mention;
+      if(knife_custom_vacancy.mention) {
+        data.mention = knife_custom_vacancy.mention;
       }
 
       let inputs = form.querySelectorAll('textarea');
@@ -166,7 +166,7 @@
 
       // Send request
       let request = new XMLHttpRequest();
-      request.open('POST', knife_theme_custom.ajaxurl);
+      request.open('POST', knife_custom_vacancy.ajaxurl);
       request.setRequestHeader('Content-Type', 'application/json');
 
       // Check if loaded
@@ -174,10 +174,10 @@
         submit.removeAttribute('data-loading');
 
         if (request.status !== 200) {
-          return submit.textContent = knife_theme_custom.error;
+          return submit.textContent = knife_custom_vacancy.error;
         }
 
-        submit.textContent = knife_theme_custom.success;
+        submit.textContent = knife_custom_vacancy.success;
 
         inputs.forEach(input => {
           input.value = '';
@@ -188,7 +188,7 @@
         submit.removeAttribute('data-loading');
 
         // Show error on button
-        submit.textContent = knife_theme_custom.error;
+        submit.textContent = knife_custom_vacancy.error;
       }
 
       request.send(JSON.stringify(data));
@@ -196,7 +196,7 @@
   }
 
   // Draw form
-  if(knife_theme_custom.fields) {
-    drawFields(knife_theme_custom.fields);
+  if(knife_custom_vacancy.fields) {
+    drawFields(knife_custom_vacancy.fields);
   }
 })();

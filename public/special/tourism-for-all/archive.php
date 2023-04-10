@@ -12,7 +12,7 @@ get_header(); ?>
             <?php
                 printf(
                     '<h1>%s</h1>',
-                    _x('Путешествовать с инвалидностью можно. Кто в России делает туризм доступным', 'special: tourism-for-all', 'knife-theme')
+                    _x('Путешествовать с инвалидностью можно. Кто в России делает туризм доступным', 'special: tourism-for-all', 'knife-customs')
                 );
             ?>
         </div>

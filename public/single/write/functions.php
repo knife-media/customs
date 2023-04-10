@@ -40,7 +40,7 @@ add_action('wp_enqueue_scripts', function() {
             'required' => '',
             'autocomplete' => 'name',
             'maxlength' => 50,
-            'placeholder' => __('Ваше имя, род занятий и проекты', 'knife-theme'),
+            'placeholder' => __('Ваше имя, род занятий и проекты', 'knife-customs'),
         ],
 
         'email' => [
@@ -49,7 +49,7 @@ add_action('wp_enqueue_scripts', function() {
             'required' => '',
             'autocomplete' => 'email',
             'maxlength' => 50,
-            'placeholder' => __('Электронная почта', 'knife-theme')
+            'placeholder' => __('Электронная почта', 'knife-customs')
         ],
 
         'subject' => [
@@ -57,13 +57,13 @@ add_action('wp_enqueue_scripts', function() {
             'type' => 'text',
             'required' => '',
             'maxlength' => 100,
-            'placeholder' => __('О чем хотите писать', 'knife-theme')
+            'placeholder' => __('О чем хотите писать', 'knife-customs')
         ],
 
         'text' => [
             'element' => 'textarea',
             'required' => '',
-            'placeholder' => __('Текст поста целиком без форматирования', 'knife-theme')
+            'placeholder' => __('Текст поста целиком без форматирования', 'knife-customs')
         ]
     ];
 
@@ -74,12 +74,12 @@ add_action('wp_enqueue_scripts', function() {
         'ajaxurl' => '/requests',
         'nonce' => substr(sha1($secret . $timestamp), -12, 10),
         'time' => $timestamp,
-        'warning' => __('Не удалось отправить заявку. Попробуйте еще раз', 'knife-theme'),
-        'button' => __('Отправить', 'knife-theme'),
-        'heading' => __('Отправить заявку', 'knife-theme'),
+        'warning' => __('Не удалось отправить заявку. Попробуйте еще раз', 'knife-customs'),
+        'button' => __('Отправить', 'knife-customs'),
+        'heading' => __('Отправить заявку', 'knife-customs'),
         'fields' => $fields
     ];
 
     // add user form fields
-    wp_localize_script('knife-custom-' . $slug, 'knife_theme_custom', $options);
+    wp_localize_script('knife-custom-' . $slug, 'knife_custom_write', $options);
 });

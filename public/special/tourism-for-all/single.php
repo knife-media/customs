@@ -46,7 +46,7 @@ get_header(); ?>
 
                     the_info(
                         sprintf(
-                            '<h5>%s', _x('Автор материала', 'special: death-work', 'knife-theme')
+                            '<h5>%s', _x('Автор материала', 'special: death-work', 'knife-customs')
                         ),
                         '</h5>', ['author']
                     );

@@ -47,9 +47,9 @@ add_action('wp_enqueue_scripts', function() {
         'ajaxurl' => '/requests/vacancy/',
         'nonce' => substr(sha1($secret . $timestamp), -12, 10),
         'time' => $timestamp,
-        'button' => __('Отправить', 'knife-theme'),
-        'success' => __('Сообщение отправлено', 'knife-theme'),
-        'error' => __('Ошибка. Попробуйте позже', 'knife-theme'),
+        'button' => __('Отправить', 'knife-customs'),
+        'success' => __('Сообщение отправлено', 'knife-customs'),
+        'error' => __('Ошибка. Попробуйте позже', 'knife-customs'),
         'heading' => esc_html(get_the_title())
     ];
 
@@ -57,12 +57,12 @@ add_action('wp_enqueue_scripts', function() {
 
     if($object->post_name === 'explainer') {
         $fields = [
-            'name' => __('Как вас зовут?', 'knife-theme'),
-            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-theme'),
-            'experince' => __('Какой у вас опыт работы, релевантный этой вакансии?', 'knife-theme'),
-            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших текста', 'knife-theme'),
-            'subjects' => __('Придумайте 5 тем для «Ножа», которые будут популярны в поиске', 'knife-theme'),
-            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-theme')
+            'name' => __('Как вас зовут?', 'knife-customs'),
+            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-customs'),
+            'experince' => __('Какой у вас опыт работы, релевантный этой вакансии?', 'knife-customs'),
+            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших текста', 'knife-customs'),
+            'subjects' => __('Придумайте 5 тем для «Ножа», которые будут популярны в поиске', 'knife-customs'),
+            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-customs')
         ];
 
         $options['fields'] = $fields;
@@ -73,13 +73,13 @@ add_action('wp_enqueue_scripts', function() {
 
     if($object->post_name === 'native-editor') {
         $fields = [
-            'name' => __('Как вас зовут?', 'knife-theme'),
-            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-theme'),
-            'experince' => __('Какой у вас опыт работы нативредом?', 'knife-theme'),
-            'links' => __('Дайте, пожалуйста, ссылки на 3 нативных текста и расскажите о своей роли в них', 'knife-theme'),
-            'resume' => __('Расскажите о вашем пуле авторов', 'knife-theme'),
-            'subjects' => __('В каких тематиках вы компетентны?', 'knife-theme'),
-            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-theme')
+            'name' => __('Как вас зовут?', 'knife-customs'),
+            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-customs'),
+            'experince' => __('Какой у вас опыт работы нативредом?', 'knife-customs'),
+            'links' => __('Дайте, пожалуйста, ссылки на 3 нативных текста и расскажите о своей роли в них', 'knife-customs'),
+            'resume' => __('Расскажите о вашем пуле авторов', 'knife-customs'),
+            'subjects' => __('В каких тематиках вы компетентны?', 'knife-customs'),
+            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-customs')
         ];
 
         $options['fields'] = $fields;
@@ -90,11 +90,11 @@ add_action('wp_enqueue_scripts', function() {
 
     if($object->post_name === 'interviewer') {
         $fields = [
-            'name' => __('Как вас зовут?', 'knife-theme'),
-            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-theme'),
-            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших интервью', 'knife-theme'),
-            'subjects' => __('Предложите 3 темы или героя, о которых вы хотите написать для нас', 'knife-theme'),
-            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-theme')
+            'name' => __('Как вас зовут?', 'knife-customs'),
+            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-customs'),
+            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших интервью', 'knife-customs'),
+            'subjects' => __('Предложите 3 темы или героя, о которых вы хотите написать для нас', 'knife-customs'),
+            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-customs')
         ];
 
         $options['fields'] = $fields;
@@ -105,11 +105,11 @@ add_action('wp_enqueue_scripts', function() {
 
     if($object->post_name === 'travel-guide') {
         $fields = [
-            'name' => __('Как вас зовут?', 'knife-theme'),
-            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-theme'),
-            'subject' => __('О каком месте вы хотите нам написать? Когда и сколько вы там жили, что вас связывает с ним?', 'knife-theme'),
-            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших текста. Если публикаций в СМИ нет, подойдет длинный пост, по которому можно судить о вашем стиле.', 'knife-theme'),
-            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-theme')
+            'name' => __('Как вас зовут?', 'knife-customs'),
+            'occupation' => __('Где и чем вы сейчас занимаетесь?', 'knife-customs'),
+            'subject' => __('О каком месте вы хотите нам написать? Когда и сколько вы там жили, что вас связывает с ним?', 'knife-customs'),
+            'links' => __('Дайте, пожалуйста, ссылки на 3 ваших лучших текста. Если публикаций в СМИ нет, подойдет длинный пост, по которому можно судить о вашем стиле.', 'knife-customs'),
+            'contacts' => __('Ваша почта и мессенджер для оперативной связи', 'knife-customs')
         ];
 
         $options['fields'] = $fields;
@@ -118,7 +118,7 @@ add_action('wp_enqueue_scripts', function() {
         $options['mention'] = '@current93';
     }
 
-    wp_localize_script('knife-custom-' . $slug, 'knife_theme_custom', $options);
+    wp_localize_script('knife-custom-' . $slug, 'knife_custom_vacancy', $options);
 });
 
 
@@ -134,7 +134,7 @@ add_filter( 'the_content', function( $content ) {
     $pages[] = sprintf(
         '<a href="%s">%s<span class="icon icon--right"></span></a>',
         esc_url(get_permalink($object->post_parent)),
-        __('Просмотреть все вакансии', 'knife-theme')
+        __('Просмотреть все вакансии', 'knife-customs')
     );
 
     if(empty($object->post_parent)) {
@@ -150,7 +150,7 @@ add_filter( 'the_content', function( $content ) {
         if(empty($children)) {
             $message = sprintf(
                 '<h3><strong>%s</strong></h3>',
-                __('Актуальных вакасний пока нет', 'knife-theme')
+                __('Актуальных вакасний пока нет', 'knife-customs')
             );
 
             return $content . $message;

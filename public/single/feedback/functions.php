@@ -40,43 +40,43 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_script('knife-custom-' . $slug, $scripts, ['knife-theme'], $version, true);
 
     $formats = [
-        'custom' => __('Спецпроект с кастомным дизайном', 'knife-theme'),
-        'levels' => __('Уровни', 'knife-theme'),
-        'cards' => __('Карточки', 'knife-theme'),
-        'quiz' => __('Тест', 'knife-theme'),
-        'special' => __('Хаб на сайте «Ножа»', 'knife-theme'),
-        'longread' => __('Лонгрид', 'knife-theme'),
-        'news' => __('Новость', 'knife-theme'),
-        'generator' => __('Генератор', 'knife-theme'),
-        'flipper' => __('Перевертыши', 'knife-theme'),
-        'social-knife' => __('Публикация в соцсетях', 'knife-theme'),
-        'social-client' => __('Посты в соцсетях клиента', 'knife-theme')
+        'custom' => __('Спецпроект с кастомным дизайном', 'knife-customs'),
+        'levels' => __('Уровни', 'knife-customs'),
+        'cards' => __('Карточки', 'knife-customs'),
+        'quiz' => __('Тест', 'knife-customs'),
+        'special' => __('Хаб на сайте «Ножа»', 'knife-customs'),
+        'longread' => __('Лонгрид', 'knife-customs'),
+        'news' => __('Новость', 'knife-customs'),
+        'generator' => __('Генератор', 'knife-customs'),
+        'flipper' => __('Перевертыши', 'knife-customs'),
+        'social-knife' => __('Публикация в соцсетях', 'knife-customs'),
+        'social-client' => __('Посты в соцсетях клиента', 'knife-customs')
     ];
 
     $brief = [
-        'company' => __('Как называется ваша компания?', 'knife-theme'),
-        'site' => __('Сайт компании или продукта', 'knife-theme'),
-        'what' => __('Что вы хотите прорекламировать?', 'knife-theme'),
-        'purpose' => __('Какова цель рекламной кампании?', 'knife-theme'),
-        'users' => __('Кто ваша целевая аудитория?', 'knife-theme'),
-        'budget' => __('Какой у вас бюджет?', 'knife-theme'),
-        'similar' => __('Какие спецпроекты вам нравятся?', 'knife-theme'),
-        'time' => __('Когда планируется рекламная кампания?', 'knife-theme'),
-        'name' => __('Как вас зовут?', 'knife-theme'),
-        'contacts' => __('Номер телефона и/или аккаунт в телеграме', 'knife-theme'),
-        'email' => __('Адрес электронной почты', 'knife-theme')
+        'company' => __('Как называется ваша компания?', 'knife-customs'),
+        'site' => __('Сайт компании или продукта', 'knife-customs'),
+        'what' => __('Что вы хотите прорекламировать?', 'knife-customs'),
+        'purpose' => __('Какова цель рекламной кампании?', 'knife-customs'),
+        'users' => __('Кто ваша целевая аудитория?', 'knife-customs'),
+        'budget' => __('Какой у вас бюджет?', 'knife-customs'),
+        'similar' => __('Какие спецпроекты вам нравятся?', 'knife-customs'),
+        'time' => __('Когда планируется рекламная кампания?', 'knife-customs'),
+        'name' => __('Как вас зовут?', 'knife-customs'),
+        'contacts' => __('Номер телефона и/или аккаунт в телеграме', 'knife-customs'),
+        'email' => __('Адрес электронной почты', 'knife-customs')
     ];
 
     $callback = [
-        'email' => __('Ваша почта', 'knife-theme'),
-        'button' => __('Хочу с вами сотрудничать', 'knife-theme'),
+        'email' => __('Ваша почта', 'knife-customs'),
+        'button' => __('Хочу с вами сотрудничать', 'knife-customs'),
     ];
 
     // Get current time stamp
     $timestamp = time();
 
     $privacy = sprintf(
-        __('Отправляя данную форму, вы соглашаетесь с <a href="%s" target="_blank">пользовательским соглашением</a> и даёте своё согласие на обработку <a href="%s" target="_blank">персональных данных</a>.', 'knife-theme'),
+        __('Отправляя данную форму, вы соглашаетесь с <a href="%s" target="_blank">пользовательским соглашением</a> и даёте своё согласие на обработку <a href="%s" target="_blank">персональных данных</a>.', 'knife-customs'),
         get_permalink(get_page_by_path('user-agreement')),
         get_permalink(get_page_by_path('privacy'))
     );
@@ -85,13 +85,13 @@ add_action('wp_enqueue_scripts', function() {
         'ajaxurl' => '/requests',
         'nonce' => substr(sha1($secret . $timestamp), -12, 10),
         'time' => $timestamp,
-        'button' => __('Отправить', 'knife-theme'),
-        'success' => __('Сообщение отправлено', 'knife-theme'),
-        'error' => __('Ошибка. Попробуйте позже', 'knife-theme'),
+        'button' => __('Отправить', 'knife-customs'),
+        'success' => __('Сообщение отправлено', 'knife-customs'),
+        'error' => __('Ошибка. Попробуйте позже', 'knife-customs'),
         'privacy' => $privacy,
         'figure' => compact('formats', 'brief', 'callback')
     ];
 
     // add user form fields
-    wp_localize_script('knife-custom-' . $slug, 'knife_theme_custom', $options);
+    wp_localize_script('knife-custom-' . $slug, 'knife_custom_feedback', $options);
 });

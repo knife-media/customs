@@ -17,21 +17,55 @@ class Knife_Customs {
         // Load custom post functions
         add_action('wp', [__CLASS__, 'inject_customs']);
 
-        // Inject common functions
-        add_action('wp', [__CLASS__, 'inject_common'], 8);
-
         // Try to update special templates
         add_action('wp', [__CLASS__, 'inject_special_single'], 8);
 
         // Try to update special templates
         add_action('wp', [__CLASS__, 'inject_special_archive'], 8);
+
+        // Inject secret-wizard
+        add_action('wp', [__CLASS__, 'inject_wizard'], 8);
     }
 
 
     /**
-     * Load common functions
+     * Load secret-wizard functions
      */
-    public static function inject_common() {
+    public static function inject_wizard() {
+        $version = '1.0';
+
+        // Get custom slug
+        $slug = 'secret-wizard';
+
+        // Get styles
+        $styles = content_url("customs/common/{$slug}/styles.min.css");
+
+        // Get scripts
+        $scripts = content_url("customs/common/{$slug}/scripts.min.js");
+
+        if(defined('WP_DEBUG') && true === WP_DEBUG) {
+            $version = date('U');
+        }
+
+        // Let's add styles
+        wp_enqueue_style('knife-custom-' . $slug, $styles, ['knife-theme'], $version);
+
+        // Let's add scripts
+        wp_enqueue_script('knife-custom-' . $slug, $scripts, ['knife-theme'], $version, true);
+
+        $options = [
+            'title' => [
+                'start' => __('Секретный предсказатель', 'knife-customs'),
+                'result' => __('Вот что говорит оракул', 'knife-customs'),
+            ],
+            'excerpt' => __('Задайте вопрос, который вас волнует больше всего', 'knife-customs'),
+            'error' => __('Что-то пошло не так попробуйте прийти за ответами позже', 'knife-customs'),
+            'placeholder' => __('Стоит ли мне менять работу?', 'knife-customs'),
+            'url' => '/feature/secret-wizard/requests/',
+        ];
+
+        // add user form fields
+        wp_localize_script('knife-custom-' . $slug, 'knife_custom_wizard', $options);
     }
 
 

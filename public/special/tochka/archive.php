@@ -44,8 +44,8 @@ get_header(); ?>
 <?php if(have_posts()) : ?>
     <nav class="navigate">
         <?php
-            previous_posts_link(__('Предыдущие', 'knife-theme'));
-            next_posts_link(__('Следующие', 'knife-theme'));
+            previous_posts_link(__('Предыдущие', 'knife-customs'));
+            next_posts_link(__('Следующие', 'knife-customs'));
         ?>
     </nav>
 <?php endif; ?>

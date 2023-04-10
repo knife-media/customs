@@ -147,7 +147,7 @@ class Knife_Customs_Cents {
         $button = sprintf(
             '<a class="button" href="%2$s" target="_blank" data-before="%3$s">%1$s</a>',
             esc_html($source), esc_url($link),
-            __('Источник ', 'knife-theme')
+            __('Источник ', 'knife-customs')
         );
 
         $figure = sprintf(

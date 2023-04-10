@@ -48,7 +48,7 @@ add_action('the_content', function($content) {
         $promo_link = sprintf(
             '<figure class="figure figure--promo"><a class="button" href="%s">%s</a>',
             esc_url(get_term_link($slug, 'special')),
-            _x('Совместный проект платформы «Россия — страна возможностей» и журнала «Нож»', 'special: rsv', 'knife-theme'),
+            _x('Совместный проект платформы «Россия — страна возможностей» и журнала «Нож»', 'special: rsv', 'knife-customs'),
         );
 
         $content = $content . $promo_link;

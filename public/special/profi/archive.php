@@ -17,7 +17,7 @@ get_header(); ?>
 
             printf(
                 '<h1>%s</h1>',
-                _x('<strong>Совместный проект</strong> платформы олимпиады «Я — профессионал» и журнала «Нож»', 'special: profi', 'knife-theme')
+                _x('<strong>Совместный проект</strong> платформы олимпиады «Я — профессионал» и журнала «Нож»', 'special: profi', 'knife-customs')
             );
         ?>
     </div>

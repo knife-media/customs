@@ -2,7 +2,7 @@
   /**
    * Check if custom options defined
    */
-  if (typeof knife_theme_custom === 'undefined') {
+  if (typeof knife_custom_feedback === 'undefined') {
     return false;
   }
 
@@ -14,7 +14,7 @@
   }
 
   // Check required ajaxurl
-  if (typeof knife_theme_custom.ajaxurl === 'undefined') {
+  if (typeof knife_custom_feedback.ajaxurl === 'undefined') {
     return false;
   }
 
@@ -116,7 +116,7 @@
     }
 
     let submit = buildElement('button', {
-      'text': knife_theme_custom.button,
+      'text': knife_custom_feedback.button,
       'attributes': {
         'type': 'submit'
       }
@@ -149,7 +149,7 @@
 
     buildElement('h6', {
       'parent': form,
-      'html': knife_theme_custom.privacy
+      'html': knife_custom_feedback.privacy
     });
 
     form.appendChild(submit);
@@ -158,8 +158,8 @@
       e.preventDefault();
 
       let data = {
-        'nonce': knife_theme_custom.nonce,
-        'time': knife_theme_custom.time,
+        'nonce': knife_custom_feedback.nonce,
+        'time': knife_custom_feedback.time,
         'fields': [],
         'formats': []
       };
@@ -190,7 +190,7 @@
 
       // Send request
       let request = new XMLHttpRequest();
-      request.open('POST', knife_theme_custom.ajaxurl + '/brief');
+      request.open('POST', knife_custom_feedback.ajaxurl + '/brief');
       request.setRequestHeader('Content-Type', 'application/json');
 
       // Check if loaded
@@ -198,10 +198,10 @@
         submit.removeAttribute('data-loading');
 
         if (request.status !== 200) {
-          return submit.textContent = knife_theme_custom.error;
+          return submit.textContent = knife_custom_feedback.error;
         }
 
-        submit.textContent = knife_theme_custom.success;
+        submit.textContent = knife_custom_feedback.success;
 
         inputs.forEach(input => {
           input.value = '';
@@ -216,7 +216,7 @@
         submit.removeAttribute('data-loading');
 
         // Show error on button
-        submit.textContent = knife_theme_custom.error;
+        submit.textContent = knife_custom_feedback.error;
       }
 
       request.send(JSON.stringify(data));
@@ -257,8 +257,8 @@
       e.preventDefault();
 
       let data = {
-        'nonce': knife_theme_custom.nonce,
-        'time': knife_theme_custom.time,
+        'nonce': knife_custom_feedback.nonce,
+        'time': knife_custom_feedback.time,
         'email': input.value
       };
 
@@ -270,7 +270,7 @@
 
       // Send request
       let request = new XMLHttpRequest();
-      request.open('POST', knife_theme_custom.ajaxurl + '/callback');
+      request.open('POST', knife_custom_feedback.ajaxurl + '/callback');
       request.setRequestHeader('Content-Type', 'application/json');
 
       // Check if loaded
@@ -278,10 +278,10 @@
         submit.removeAttribute('data-loading');
 
         if (request.status !== 200) {
-          return submit.textContent = knife_theme_custom.error;
+          return submit.textContent = knife_custom_feedback.error;
         }
 
-        submit.textContent = knife_theme_custom.success;
+        submit.textContent = knife_custom_feedback.success;
         input.value = '';
       }
 
@@ -289,7 +289,7 @@
         submit.removeAttribute('data-loading');
 
         // Show error on button
-        submit.textContent = knife_theme_custom.error;
+        submit.textContent = knife_custom_feedback.error;
       }
 
       request.send(JSON.stringify(data));
@@ -298,11 +298,11 @@
 
 
   // Draw formats
-  let list = drawFormats(knife_theme_custom.figure.formats);
+  let list = drawFormats(knife_custom_feedback.figure.formats);
 
   // Draw brief figure
-  drawBrief(knife_theme_custom.figure.brief, list);
+  drawBrief(knife_custom_feedback.figure.brief, list);
 
   // Draw callback
-  drawCallback(knife_theme_custom.figure.callback);
+  drawCallback(knife_custom_feedback.figure.callback);
 })();

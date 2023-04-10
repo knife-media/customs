@@ -1,6 +1,6 @@
 (function () {
   // Check user form options existing
-  if (typeof knife_theme_custom === 'undefined') {
+  if (typeof knife_custom_write === 'undefined') {
     return false;
   }
 
@@ -12,7 +12,7 @@
   }
 
   // Check required ajaxurl
-  if (typeof knife_theme_custom.ajaxurl === 'undefined') {
+  if (typeof knife_custom_write.ajaxurl === 'undefined') {
     return false;
   }
 
@@ -150,7 +150,7 @@
 
 
     let request = new XMLHttpRequest();
-    request.open('POST', knife_theme_custom.ajaxurl + '/club');
+    request.open('POST', knife_custom_write.ajaxurl + '/club');
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify(data));
 
@@ -176,8 +176,8 @@
 
   // Get option from global settings
   function getOption(option, alternate) {
-    if (knife_theme_custom.hasOwnProperty(option)) {
-      return knife_theme_custom[option];
+    if (knife_custom_write.hasOwnProperty(option)) {
+      return knife_custom_write[option];
     }
 
     return alternate || '';
@@ -186,7 +186,7 @@
 
   // Append fields to form
   function createFields(form) {
-    var fields = knife_theme_custom.fields;
+    var fields = knife_custom_write.fields;
 
     for (var key in fields) {
       if (!fields.hasOwnProperty(key)) {
