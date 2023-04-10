@@ -149,7 +149,7 @@
   let start = 0;
 
   header.addEventListener('click', () => {
-    if (start === null || ++start < 2) {
+    if (start === null || ++start < 3) {
       return;
     }
 
