@@ -407,6 +407,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
       font-size: 0.625rem;
       letter-spacing: 0.5px;
+      line-height: 1.5;
 
       color: inherit;
 
@@ -492,6 +493,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
   .wizard__caption {
     display: block;
+    cursor: default;
     margin: 0;
     opacity: 0;
 
@@ -516,6 +518,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
   .wizard__result {
     display: block;
+    cursor: default;
 
     margin: 1.25rem 0 1.5rem;
     padding: 0;
@@ -542,6 +545,12 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
   @media screen and (max-width: 767px) {
     padding-top: 0;
+  }
+
+  body.is-adminbar & {
+    @media screen and (max-width: 767px) {
+      padding-top: 2.5rem;
+    }
   }
 }
 

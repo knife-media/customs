@@ -17,18 +17,20 @@
    */
   let popup = null
 
-  function randomChars() {
-    const array = [];
-
-    for (let i = 1; i < 16; i++) {
-      array.push(i.toString(16));
-    }
-
+  /**
+   * Shuffle given list
+   */
+  function shuffleList(array, index) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const temp = array[i];
       array[i] = array[j];
       array[j] = temp;
+    }
+
+    if (typeof index !== 'undefined') {
+      console.log(array[index])
+      return array[index];
     }
 
     return array;
@@ -174,7 +176,7 @@
     button.appendChild(span);
 
     const label = document.createElement('label');
-    label.textContent = knife_custom_wizard.welcome.label;
+    label.textContent = shuffleList(knife_custom_wizard.welcome.labels, 0);
     button.appendChild(label);
 
     for (let i = 0; i < 2; i++) {
@@ -340,7 +342,13 @@
     const button = drawSelectionButton(screen);
 
     // Shuffle cards
-    const chars = randomChars();
+    let chars = [];
+
+    for (let i = 1; i < 16; i++) {
+      chars.push(i.toString(16));
+    }
+
+    chars = shuffleList(chars);
 
     // Stores user selection
     const magic = new Set();
