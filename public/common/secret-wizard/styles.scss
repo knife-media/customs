@@ -136,7 +136,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
   .wizard__close {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 1.25rem;
     right: 1.5rem;
     z-index: 2;
@@ -170,6 +170,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     }
 
     @media screen and (max-width: 1023px) {
+      position: absolute;
       top: 1rem;
       right: 1rem;
     }
