@@ -29,7 +29,6 @@
     }
 
     if (typeof index !== 'undefined') {
-      console.log(array[index])
       return array[index];
     }
 
