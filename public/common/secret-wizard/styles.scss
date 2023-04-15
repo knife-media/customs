@@ -1,57 +1,163 @@
-$width-content: 40rem;
+@font-face {
+  font-family: 'Oranienbaum';
+  src:
+  url('fonts/oranienbaum.woff2') format('woff2'),
+  url('fonts/oranienbaum.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@import "icons/style.css";
+
+$width-content: 27.25rem;
 $width-site: 80rem;
 $width-wide: 52.25rem;
 
-$color-forms: #2a2d2d;
-$color-border: #4a4d4d;
+$font-serif: 'Oranienbaum', serif;
+
 $color-white: #fff;
-$color-accent: #7e00ff;
+$color-light: #e8e8e8;
+$color-accent: #F19E4E;
+$color-second: #f15c4e;
+
+$color-gradient-top: #641F46;
+$color-gradient-bottom: #000336;
+
+$background-popup: linear-gradient(to bottom, rgba(#03022e, 0.95), rgba(#561b3e, 0.95));
+$background-form: linear-gradient(to bottom, #641F46, #000336);
 
 .wizard {
-  display: flex;
-  justify-content: center;
+  display: block;
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
+  z-index: 50;
 
-  width: 100%;
-  height: 100%;
-  padding: 4rem 0;
   overflow: auto;
-
-  color: $color-white;
-  background: rgba(0,0,0,0.925);
-
+  padding: 5% 1rem 2rem;
   opacity: 0;
-  z-index: -2;
+
+  color: $color-light;
+  background-image: $background-popup;
 
   -webkit-overflow-scrolling: touch;
+  animation: wizard-show 0.25s forwards;
 
-  .wizard__closer {
+  &.wizard--welcome {
+    .wizard__decor, .wizard__button, .wizard__excerpt {
+      animation: wizard-show 1s 0.5s forwards;
+    }
+  }
+
+  &.wizard--prepare {
+    .wizard__excerpt, .wizard__button {
+      opacity: 1;
+      animation: wizard-hide 0.5s forwards;
+    }
+
+    .wizard__decor {
+      opacity: 1;
+      animation: wizard-hide 0.5s 0.5s forwards;
+    }
+
+    .wizard__decor::after {
+      animation: wizard-header-line 0.75s forwards;
+    }
+
+    .wizard__decor::before {
+      animation: wizard-header-line 0.75s forwards;
+    }
+  }
+
+  &.wizard--selection {
+    .wizard__screen {
+      padding-top: 2rem;
+    }
+
+    .wizard__button {
+      animation: wizard-show 0.75s 1s forwards;
+    }
+
+    .wizard__call {
+      animation: wizard-show 1s 0.5s forwards;
+    }
+  }
+
+  &.wizard--mystery {
+    .wizard__screen {
+      padding-top: 2rem;
+    }
+
+    .wizard__button {
+      opacity: 1;
+      animation: wizard-hide 0.75s forwards;
+    }
+
+    .wizard__call {
+      opacity: 1;
+      animation: wizard-hide 0.75s forwards;
+    }
+
+    .wizard__grid .wizard__card {
+      transition: filter 1s;
+    }
+
+    .wizard__grid .wizard__card:not(.wizard__card--active) {
+      animation: wizard-hide 0.75s forwards;
+    }
+
+    .wizard__grid .wizard__card--flash {
+      filter: brightness(0.5) contrast(0.5);
+    }
+  }
+
+  &.wizard--final {
+    .wizard__screen {
+      padding-top: 2rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .wizard__caption {
+      animation: wizard-show 0.75s 0.25s forwards;
+    }
+
+    .wizard__result {
+      animation: wizard-show 0.75s 0.25s forwards;
+    }
+
+    .wizard__decor {
+      animation: wizard-show 0.75s 0.75s forwards;
+    }
+  }
+
+  .wizard__close {
     display: block;
-    position: absolute;
-    top: 0.875rem;
+    position: fixed;
+    top: 1.25rem;
     right: 1.5rem;
 
-    width: 2rem;
-    height: 2rem;
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
 
-    opacity: 0.5;
+    opacity: 1;
     transform: rotate(45deg);
 
     &::before, &::after {
       content: '';
 
       position: absolute;
-      top: 0;
-      left: 50%;
+      top: calc(50% - 1px);
+      left: calc(50% - 0.625rem);
 
-      width: 0.125rem;
-      height: 100%;
+      height: 2px;
+      width: 1.25rem;
 
-      border-radius: 1px;
-      background-color: $color-white;
-      transform: translateX(-50%);
+      background-color: $color-light;
     }
 
     &::after {
@@ -59,116 +165,414 @@ $color-accent: #7e00ff;
     }
 
     &:hover {
-      opacity: 0.875;
-    }
-  }
-
-  .wizard__form {
-    display: flex;
-    flex-flow: column nowrap;
-    align-content: center;
-    justify-content: center;
-
-    width: $width-content;
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-
-  .wizard__title {
-    display: block;
-
-    width: 100%;
-    margin: 0.5rem 0;
-
-    text-align: center;
-    font-size: 1.5rem;
-  }
-
-  .wizard__excerpt {
-    display: block;
-
-    width: 100%;
-    margin: 0;
-
-    text-align: center;
-    font-size: 1rem;
-  }
-
-  .wizard__answer {
-    display: block;
-
-    width: 100%;
-    margin: 1rem 0 0;
-
-    text-align: left;
-    font-size: 1.125rem;
-    line-height: 1.5;
-  }
-
-  .wizard__textarea {
-    display: block;
-    resize: none;
-    outline: none;
-
-    height: 10rem;
-    margin: 2.5rem 0 0;
-    padding: 0.5rem 0.75rem;
-
-    font-family: inherit;
-    font-size: 1.125rem;
-
-    color: $color-white;
-    background: $color-forms;
-    border: solid 2px $color-border;
-    border-radius: 0.5rem;
-  }
-
-  .wizard__submit {
-    display: block;
-
-    margin-top: 1rem;
-    padding: 1rem 0.5rem;
-
-    font-family: inherit;
-    font-size: 1.125rem;
-
-    color: $color-white;
-    background-color: $color-accent;
-
-    border-radius: 0.5rem;
-    transition: filter 0.25s;
-
-    &:hover {
       filter: brightness(80%);
     }
   }
 
-  .wizard__warning {
+  .wizard__screen {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+
+    width: calc($width-content + 2rem);
+    max-width: 100%;
+    margin: 4rem auto 0;
+    padding: 0.75rem 1.75rem 2.5rem;
+    opacity: 0;
+
+    background-image: $background-form;
+    box-shadow: 0 0 2px $color-gradient-bottom;
+    border-radius: 0.75rem;
+
+    animation: wizard-uprize 1s 0.5s forwards;
+
+    @media screen and (max-width: 479px) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .wizard__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+
+    margin: 1.5rem 0 0.625rem;
+    padding: 0;
+    opacity: 0;
+
+    animation: wizard-show 1.5s 0.75s forwards;
+
+    &.wizard__grid--full .wizard__card:not(.wizard__card--active) {
+      pointer-events: none;
+    }
+
+    @media screen and (max-width: 479px) {
+      gap: 0.5rem;
+    }
+  }
+
+  .wizard__card {
     display: block;
+    position: relative;
+    cursor: pointer;
 
     width: 100%;
-    margin: 1rem 0 0;
+    padding-top: 100%;
 
-    text-align: center;
-    font-size: 1rem;
+    box-shadow: inset 0 0 0 2px rgba($color-light, 0.25);
+    border-radius: 6px;
+
+    color: $color-light;
+    transition: color 0.5s, box-shadow 0.5s;
+    will-change: transform;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.5rem;
+
+      transform: translate(-50%, -50%);
+      transition: transform 0.375s;
+    }
+
+    &:hover {
+      color: $color-accent;
+      box-shadow: inset 0 0 1px 2px $color-accent;
+
+      i {
+        transform: translate(-50%, -50%) scale(1.25);
+      }
+    }
+
+    &.wizard__card--active {
+      color: $color-second;
+      box-shadow: inset 0 0 1px 2px $color-second;
+
+      i {
+        transform: translate(-50%, -50%) scale(1.25);
+      }
+    }
   }
-}
 
-body.is-wizard {
-  overflow: hidden;
+  .wizard__call {
+    display: block;
+    cursor: default;
 
-  .wizard {
-    z-index: 50;
-    animation: wizard-show 0.25s forwards;
+    margin: 0;
+    opacity: 0;
+
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 1.075;
+
+    color: $color-accent;
+
+    span {
+      font-family: $font-serif;
+
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    label {
+      display: block;
+      margin: 0.625rem 0 0;
+      padding: 0;
+
+      font-size: 0.625rem;
+      letter-spacing: 0.5px;
+      line-height: 1.375;
+
+      color: $color-light;
+
+      @media screen and (max-width: 479px) {
+        font-size: 0.5rem;
+      }
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 2rem;
+    }
+  }
+
+  .wizard__decor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    width: 100%;
+    height: 3.5rem;
+    opacity: 0;
+
+    font-size: 1.875rem;
+    color: $color-accent;
+
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+
+      width: calc(50% - 2rem);
+      height: 1px;
+
+      background-color: $color-accent;
+    }
+
+    &::after {
+      left: auto;
+      right: 0;
+    }
+
+    &.wizard__decor--final {
+      top: auto;
+      bottom: 0.75rem;
+    }
+  }
+
+  .wizard__repeated {
+    display: block;
+    cursor: default;
+
+    margin: 0 0 1.5rem;
+
+    font-size: 1.125rem;
+    font-family: $font-serif;
+
+    color: $color-accent;
+  }
+
+  .wizard__excerpt {
+    display: block;
+    cursor: default;
+
+    width: 100%;
+    margin: 0 0 0.75rem;
+    opacity: 0;
+
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+
+    @media screen and (max-width: 359px) {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .wizard__button {
+    display: block;
+    position: relative;
+    align-self: center;
+
+    width: calc(100% - 1rem);
+    margin-top: 1.75rem;
+    padding: 0.375rem 0 0.625rem 0;
+    opacity: 0;
+
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: 1;
+
+    color: $color-accent;
+
+    border: solid 1px $color-accent;
+    border-radius: 3px;
+
+    transition: 0.5s;
+
+    span {
+      font-family: $font-serif;
+      letter-spacing: 1px;
+    }
+
+    label {
+      display: block;
+      margin: 0.5rem 0 0;
+      padding: 0;
+
+      font-size: 0.625rem;
+      letter-spacing: 0.5px;
+
+      color: inherit;
+
+      @media screen and (max-width: 479px) {
+        font-size: 0.5rem;
+      }
+    }
+
+    i {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+
+      font-size: 2rem;
+      transform: translateY(-50%);
+
+      &:last-child {
+        left: auto;
+        right: 2rem;
+
+        @media screen and (max-width: 479px) {
+          right: 1.25rem;
+        }
+      }
+
+      @media screen and (max-width: 479px) {
+        font-size: 1.25rem;
+        left: 1.25rem;
+      }
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      filter: brightness(50%) contrast(50%);
+    }
+
+    &::before {
+      content: '';
+
+      display: block;
+      position: absolute;
+
+      top: -0.5rem;
+      left: -0.5rem;
+
+      width: calc(100% + 1rem);
+      height: calc(100% + 1rem);
+
+      border: solid 2.5px;
+      border-color: inherit;
+      border-radius: 6px;
+
+      transition: 0.25s border;
+    }
+
+    &:hover {
+      color: $color-second;
+      border-color: $color-second;
+    }
+
+    &.wizard__button--selection {
+      padding: 0.75rem 0 0.75rem 0;
+      font-size: 1.875rem;
+
+      @media screen and (max-width: 479px) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 359px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 2.75rem;
+    }
+
+    @media screen and (max-width: 359px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .wizard__caption {
+    display: block;
+    margin: 0;
+    opacity: 0;
+
+    text-transform: uppercase;
+    text-align: center;
+
+    font-family: $font-serif;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    line-height: 1;
+
+    color: $color-accent;
+
+    @media screen and (max-width: 479px) {
+      font-size: 2.75rem;
+    }
+
+    @media screen and (max-width: 359px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .wizard__result {
+    display: block;
+
+    margin: 1.25rem 0 1.5rem;
+    padding: 0;
+    opacity: 0;
+
+    p {
+      display: block;
+      margin: 0 0 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &.wizard__result--error {
+      text-align: center;
+    }
+
+    @media screen and (max-width: 359px) {
+      margin: 0.75rem 0 1.25rem;
+      font-size: 0.9375rem;
+    }
   }
 }
 
 @keyframes wizard-show {
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes wizard-uprize {
   0% {
-    opacity: 0;
+    transform: translateY(10px);
   }
 
   100% {
     opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes wizard-hide {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes wizard-filter {
+  100% {
+    filter: brightness(0.25) contrast(0.25);
+  }
+}
+
+@keyframes wizard-header-line {
+  0% {
+    max-width: 100%;
+  }
+
+  100% {
+    max-width: 0;
   }
 }

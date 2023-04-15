@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'wizard-icons';
+  src:
+    url('../fonts/wizard-icons.ttf?ofmdax') format('truetype'),
+    url('../fonts/wizard-icons.woff?ofmdax') format('woff'),
+    url('../fonts/wizard-icons.svg?ofmdax#wizard-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.wizard__icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'wizard-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wizard__icon--1:before {
+  content: "\e902";
+}
+.wizard__icon--2:before {
+  content: "\e904";
+}
+.wizard__icon--3:before {
+  content: "\e907";
+}
+.wizard__icon--4:before {
+  content: "\e908";
+}
+.wizard__icon--5:before {
+  content: "\e90a";
+}
+.wizard__icon--6:before {
+  content: "\e90c";
+}
+.wizard__icon--7:before {
+  content: "\e900";
+}
+.wizard__icon--8:before {
+  content: "\e901";
+}
+.wizard__icon--9:before {
+  content: "\e903";
+}
+.wizard__icon--a:before {
+  content: "\e905";
+}
+.wizard__icon--b:before {
+  content: "\e906";
+}
+.wizard__icon--c:before {
+  content: "\e909";
+}
+.wizard__icon--d:before {
+  content: "\e90b";
+}
+.wizard__icon--e:before {
+  content: "\e90d";
+}
+.wizard__icon--f:before {
+  content: "\e90f";
+}
+.wizard__icon--star:before {
+  content: "\e910";
+}
+.wizard__icon--sun:before {
+  content: "\e911";
+}

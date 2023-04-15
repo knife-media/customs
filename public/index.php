@@ -54,14 +54,25 @@ class Knife_Customs {
         wp_enqueue_script('knife-custom-' . $slug, $scripts, ['knife-theme'], $version, true);
 
         $options = [
-            'title' => [
-                'start' => __('Секретный предсказатель', 'knife-customs'),
-                'result' => __('Вот что говорит оракул', 'knife-customs'),
-            ],
-            'excerpt' => __('Задайте вопрос, который вас волнует больше всего', 'knife-customs'),
-            'error' => __('Что-то пошло не так попробуйте прийти за ответами позже', 'knife-customs'),
-            'placeholder' => __('Стоит ли мне менять работу?', 'knife-customs'),
             'url' => '/feature/secret-wizard/requests/',
+            'welcome' => [
+                'excerpts' => [
+                    __('Могут ли когнитивная психология и эволюционная биология объяснить устройство наших сообществ и формирование религиозных верований? Редакция журнала «Нож» уверена, что да.', 'knife-customs'),
+                    __('Задайте вопрос оракулу и нажмите на кнопку, чтобы узнать ответ.', 'knife-customs'),
+                ],
+                'button' => __('Узнать', 'knife-customs'),
+                'label' => __('про мох в волшебном лесу', 'knife-customs'),
+            ],
+            'selection' => [
+                'title' => __('Выберите 4 символа', 'knife-customs'),
+                'label' => __('как чувствуете в порядке важности', 'knife-customs'),
+                'button' => __('Вперед', 'knife-customs'),
+            ],
+            'error' => [
+                'title' => __('Не получилось', 'knife-customs'),
+                'text'  => __('Сегодня оракул не может вам ответить. Попробуйте еще раз или приходите завтра.', 'knife-customs'),
+            ],
+            'repeated' => __('Не испытывайте судьбу дважды. Задайте следующий вопрос оракулу завтра, а пока лучше почитайте «Нож».', 'knife-customs'),
         ];
 
         // add user form fields

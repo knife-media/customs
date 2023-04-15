@@ -12,153 +12,460 @@
     return false;
   }
 
-  let form = null;
+  /**
+   * Main popup
+   */
+  let popup = null
+
+  function randomChars() {
+    const array = [];
+
+    for (let i = 1; i < 16; i++) {
+      array.push(i.toString(16));
+    }
+
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    return array;
+  }
+
+  /**
+   * Check is popup recently shown
+   */
+  function getRecent() {
+    let storage = window.localStorage.getItem('secret-wizard');
+
+    if (storage === null) {
+      return null;
+    }
+
+    storage = JSON.parse(storage);
+
+    if (!storage.message || !storage.timestamp) {
+      return null;
+    }
+
+    const current = Math.floor(Date.now() / 1000);
+
+    // If current time more than saved + 24 hours
+    if (current > (storage.timestamp + 3600 * 24)) {
+      return null;
+    }
+
+    const message = storage.message;
+
+    if (!message.title || !message.text) {
+      return null;
+    }
+
+    return message;
+  }
 
   /**
    * Show main wizard popup
    */
   function showPopup() {
-    const popup = document.createElement('div');
+    popup = document.createElement('div');
     popup.classList.add('wizard');
     document.body.appendChild(popup);
 
-    createFields(popup, () => {
-      form.addEventListener('submit', handleForm);
+    const close = document.createElement('button');
+    close.classList.add('wizard__close');
+    close.setAttribute('type', 'button');
+    popup.appendChild(close);
 
-      // Focus on text field
-      form.querySelector('textarea').focus();
+    const adminbar = document.getElementById('wpadminbar');
 
-      document.body.classList.add('is-wizard');
-    });
+    if (adminbar && window.scrollY < adminbar.clientHeight) {
+      close.style.marginTop = (adminbar.clientHeight - window.scrollY) + 'px';
+    }
 
-    // Listen to esc key
-    popup.addEventListener('keydown', (e) => {
-      if (e.key != 'Escape') {
-        return;
+    const scrollTop = window.scrollY;
+
+    // Set body login class
+    document.body.classList.add('is-login');
+    document.body.style.top = -scrollTop + 'px';
+
+    function closeWizard() {
+      document.body.classList.remove('is-login');
+      document.body.style.top = '';
+      document.body.removeChild(popup);
+
+      window.scrollTo(0, scrollTop);
+
+      document.removeEventListener('keydown', escClose);
+    }
+
+    // Close popup
+    close.addEventListener('click', closeWizard);
+
+    function escClose(e) {
+      if (e.key == 'Escape') {
+        closeWizard();
       }
+    }
 
-      document.body.classList.add('is-wizard');
+    document.addEventListener('keydown', escClose);
 
-      // Completely remove popup
-      document.body.removeChild(popup);
-    });
+    const screen = document.createElement('div');
+    screen.classList.add('wizard__screen');
+    popup.appendChild(screen);
 
-    const closer = document.createElement('button');
-    closer.classList.add('wizard__closer');
-    closer.setAttribute('type', 'button');
-    popup.appendChild(closer)
+    const recent = getRecent();
 
-    closer.addEventListener('click', (e) => {
-      e.preventDefault();
+    if (recent === null) {
+      return createWelcome(screen);
+    }
 
-      // Remove popup at all
-      document.body.removeChild(popup);
-    });
+    createFinal(screen, recent);
+
+    // Show warn message if recently used
+    const repeated = document.createElement('div');
+    repeated.classList.add('wizard__repeated');
+    repeated.textContent = knife_custom_wizard.repeated;
+    screen.appendChild(repeated);
   }
 
   /**
-   * Handle created form actions
+   * Get final message based on user choice
    */
-  function handleForm(e) {
-    e.preventDefault();
-
+  function getMessage(options, callback) {
     const request = new XMLHttpRequest();
     request.open('POST', knife_custom_wizard.url, true);
     request.setRequestHeader('Content-Type', 'application/json');
 
-    request.onload = () => {
+    request.addEventListener('load', () => {
       try {
         const response = JSON.parse(request.responseText);
 
-        if (request.status !== 200) {
-          return showError(response.message || knife_custom_wizard.error);
+        if (request.status === 200 && response.message) {
+          return callback(response.message);
+        }
+      } catch(err) {
+        console.error(err);
+      }
+
+      callback(null);
+    });
+
+    request.addEventListener('error', () => {
+      return callback(null);
+    });
+
+    request.send(JSON.stringify({options}));
+  }
+
+  /**
+   * Draw welcome button element
+   */
+  function drawWelcomeButton(screen) {
+    const button = document.createElement('button');
+    button.classList.add('wizard__button', 'wizard__button--welcome');
+    button.setAttribute('type', 'button');
+    screen.appendChild(button);
+
+    const span = document.createElement('span');
+    span.textContent = knife_custom_wizard.welcome.button;
+    button.appendChild(span);
+
+    const label = document.createElement('label');
+    label.textContent = knife_custom_wizard.welcome.label;
+    button.appendChild(label);
+
+    for (let i = 0; i < 2; i++) {
+      const star = document.createElement('i');
+      star.classList.add('wizard__icon', 'wizard__icon--star');
+      button.appendChild(star);
+    }
+
+    return button;
+  }
+
+  /**
+   * Draw call element
+   */
+  function drawSelectionCall(screen) {
+    const call = document.createElement('h2');
+    call.classList.add('wizard__call');
+    screen.appendChild(call);
+
+    const span = document.createElement('span');
+    span.textContent = knife_custom_wizard.selection.title;
+    call.appendChild(span);
+
+    const label = document.createElement('label');
+    label.textContent = knife_custom_wizard.selection.label;
+    call.append(label);
+
+    return call;
+  }
+
+  /**
+   * Draw selection button element
+   */
+  function drawSelectionButton(screen) {
+    const button = document.createElement('button');
+    button.classList.add('wizard__button', 'wizard__button--selection');
+    button.setAttribute('type', 'button');
+    button.setAttribute('disabled', 'disabled');
+    screen.appendChild(button);
+
+    const span = document.createElement('span');
+    span.textContent = knife_custom_wizard.selection.button;
+    button.appendChild(span);
+
+    for (let i = 0; i < 2; i++) {
+      const star = document.createElement('i');
+      star.classList.add('wizard__icon', 'wizard__icon--star');
+      button.appendChild(star);
+    }
+
+    return button;
+  }
+
+  /**
+   * Create welcome screen
+   */
+  function createWelcome(screen) {
+    popup.classList.add('wizard--welcome');
+
+    const decor = document.createElement('div');
+    decor.classList.add('wizard__decor');
+    screen.appendChild(decor);
+
+    const sun = document.createElement('span');
+    sun.classList.add('wizard__icon', 'wizard__icon--sun');
+    decor.appendChild(sun);
+
+    const excerpts = knife_custom_wizard.welcome.excerpts;
+
+    excerpts.forEach(excerpt => {
+      const p = document.createElement('h5');
+      p.classList.add('wizard__excerpt');
+      p.textContent = excerpt;
+      screen.appendChild(p);
+    });
+
+    const button = drawWelcomeButton(screen);
+
+    button.addEventListener('click', () => {
+      popup.classList.remove('wizard--welcome');
+
+      // Load next screen
+      loadSelection(screen);
+    });
+  }
+
+  /**
+   * Create final screen
+   */
+  function createFinal(screen, message) {
+    popup.classList.add('wizard--final');
+
+    while (screen.firstChild) {
+      screen.removeChild(screen.lastChild);
+    }
+
+    const caption = document.createElement('h2');
+    caption.classList.add('wizard__caption');
+    caption.textContent = message.title;
+    screen.appendChild(caption);
+
+    const result = document.createElement('figure');
+    result.classList.add('wizard__result');
+    result.innerHTML = message.text;
+    screen.appendChild(result);
+
+    const decor = document.createElement('div');
+    decor.classList.add('wizard__decor', 'wizard__decor--final');
+    screen.appendChild(decor);
+
+    const star = document.createElement('span');
+    star.classList.add('wizard__icon', 'wizard__icon--star');
+    decor.appendChild(star);
+
+    return screen;
+  }
+
+  /**
+   * Create error screen
+   */
+  function createError(screen) {
+    popup.classList.add('wizard--final');
+
+    while (screen.firstChild) {
+      screen.removeChild(screen.lastChild);
+    }
+
+    const caption = document.createElement('h2');
+    caption.classList.add('wizard__caption');
+    caption.textContent = knife_custom_wizard.error.title;
+    screen.appendChild(caption);
+
+    const result = document.createElement('figure');
+    result.classList.add('wizard__result', 'wizard__result--error');
+    result.textContent = knife_custom_wizard.error.text;
+    screen.appendChild(result);
+
+    const decor = document.createElement('div');
+    decor.classList.add('wizard__decor', 'wizard__decor--final');
+    screen.appendChild(decor);
+
+    const star = document.createElement('span');
+    star.classList.add('wizard__icon', 'wizard__icon--star');
+    decor.appendChild(star);
+  }
+
+  /**
+   * Create selection screen
+   */
+  function createSelection(screen) {
+    popup.classList.add('wizard--selection');
+
+    while (screen.firstChild) {
+      screen.removeChild(screen.lastChild);
+    }
+
+    drawSelectionCall(screen);
+
+    const grid = document.createElement('div');
+    grid.classList.add('wizard__grid');
+    screen.appendChild(grid);
+
+    const button = drawSelectionButton(screen);
+
+    // Shuffle cards
+    const chars = randomChars();
+
+    // Stores user selection
+    const magic = new Set();
+
+    for (let i = 0; i < chars.length; i++) {
+      const card = document.createElement('button');
+      card.classList.add('wizard__card');
+      card.setAttribute('type', 'button');
+      card.setAttribute('data-char', chars[i]);
+      card.innerHTML = `<i class="wizard__icon wizard__icon--${chars[i]}"></i>`;
+      grid.appendChild(card);
+
+      card.addEventListener('click', () => {
+        card.classList.remove('wizard__card--active');
+        grid.classList.remove('wizard__grid--full');
+
+        button.setAttribute('disabled', 'disabled');
+
+        if (magic.has(card.dataset.char)) {
+          return magic.delete(card.dataset.char);
         }
 
-        return showSuccess(response.message);
-      } catch (err) {
-        console.error(err);
-        return showError(knife_custom_wizard.error);
+        if (magic.size >= 4) {
+          grid.classList.add('wizard__grid--full');
+          return button.removeAttribute('disabled');
+        }
+
+        magic.add(card.dataset.char);
+        card.classList.add('wizard__card--active');
+
+        if (magic.size >= 4) {
+          grid.classList.add('wizard__grid--full');
+          return button.removeAttribute('disabled');
+        }
+      });
+    }
+
+    button.addEventListener('click', () => {
+      popup.classList.remove('wizard--selection');
+
+      // Load next screen
+      loadFinal(screen, Array.from(magic).join(''));
+    });
+  }
+
+  /**
+   * Flash card funciton
+   */
+  function flashCard(cards, cur) {
+    if (!popup.classList.contains('wizard--mystery')) {
+      return false;
+    }
+
+    cards.forEach(card => {
+      card.classList.add('wizard__card--flash');
+    });
+
+    cards[cur].classList.remove('wizard__card--flash');
+
+    setTimeout(() => {
+      let rand = cur;
+
+      while (rand == cur) {
+        rand = Math.floor(Math.random() * cards.length);
       }
-    }
 
-    const data = {
-      question: form.querySelector('textarea').value,
-    }
-
-    request.send(JSON.stringify(data));
+      return flashCard(cards, rand);
+    }, 500);
   }
 
   /**
-   * Show message on success
+   * Load final screen
    */
-  function showSuccess(message) {
-    while (form.firstChild) {
-      form.removeChild(form.lastChild);
+  function loadFinal(screen, options) {
+    popup.classList.add('wizard--mystery');
+
+    setTimeout(() => {
+      flashCard(screen.querySelectorAll('.wizard__card--active'), 0);
+    }, 750);
+
+    const prepareFinal = (message) => {
+      popup.classList.remove('wizard--mystery');
+
+      if (message === null) {
+        return createError(screen);
+      }
+
+      const storage = {
+        timestamp: Math.floor(Date.now() / 1000),
+        message: message
+      }
+
+      window.localStorage.setItem('secret-wizard', JSON.stringify(storage));
+
+      // Show final screen
+      createFinal(screen, message);
     }
 
-    const title = document.createElement('h5');
-    title.classList.add('wizard__title');
-    title.textContent = knife_custom_wizard.title.result;
-    form.appendChild(title);
-
-    const answer = document.createElement('p');
-    answer.classList.add('wizard__answer');
-    answer.textContent = message;
-    form.appendChild(answer);
+    getMessage(options, (message) => {
+      setTimeout(() => prepareFinal(message), 2500);
+    });
   }
 
   /**
-   * Handle form errors
+   * Load selection screen
    */
-  function showError(message) {
-    const warning = document.createElement('p');
-    warning.classList.add('wizard__warning');
-    warning.textContent = message;
-    form.appendChild(warning);
-  }
+  function loadSelection(screen) {
+    popup.classList.add('wizard--prepare');
 
-  /**
-   * Create all required wizard forms
-   */
-  function createFields(popup, callback) {
-    form = document.createElement('form');
-    form.classList.add('wizard__form');
-    form.setAttribute('method', 'POST');
-    form.setAttribute('action', '/');
-    popup.appendChild(form);
+    setTimeout(() => {
+      popup.classList.remove('wizard--prepare');
 
-    const title = document.createElement('h2');
-    title.classList.add('wizard__title');
-    title.textContent = knife_custom_wizard.title.start;
-    form.appendChild(title);
-
-    const excerpt = document.createElement('h5');
-    excerpt.classList.add('wizard__excerpt');
-    excerpt.textContent = knife_custom_wizard.excerpt;
-    form.appendChild(excerpt);
-
-    const textarea = document.createElement('textarea');
-    textarea.classList.add('wizard__textarea');
-    textarea.setAttribute('placeholder', knife_custom_wizard.placeholder);
-    form.appendChild(textarea);
-
-    const submit = document.createElement('button');
-    submit.classList.add('wizard__submit');
-    submit.setAttribute('type', 'submit');
-    submit.textContent = 'Узнать ответ';
-    form.appendChild(submit);
-
-    return callback();
+      // Create new screen
+      createSelection(screen);
+    }, 1000);
   }
 
   let start = 0;
 
-  header.addEventListener('click', () => {
-    if (start === null || ++start < 3) {
+  header.addEventListener('click', (e) => {
+    if (++start < 3) {
       return;
     }
 
-    start = null;
+    start = 0;
     showPopup();
   });
 })();
