@@ -24,7 +24,7 @@ class Knife_Customs {
         add_action('wp', [__CLASS__, 'inject_special_archive'], 8);
 
         // Inject secret-wizard
-//      add_action('wp', [__CLASS__, 'inject_wizard'], 8);
+        add_action('wp', [__CLASS__, 'inject_wizard'], 8);
     }
 
 
@@ -32,7 +32,7 @@ class Knife_Customs {
      * Load secret-wizard functions
      */
     public static function inject_wizard() {
-        $version = '1.1';
+        $version = '1.3';
 
         // Get custom slug
         $slug = 'secret-wizard';

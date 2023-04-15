@@ -79,11 +79,11 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     }
 
     .wizard__button {
-      animation: wizard-show 0.75s 1s forwards;
+      animation: wizard-show 0.75s 0.75s forwards;
     }
 
     .wizard__call {
-      animation: wizard-show 1s 0.5s forwards;
+      animation: wizard-show 0.75s 0.25s forwards;
     }
   }
 
@@ -111,7 +111,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     }
 
     .wizard__grid .wizard__card--flash {
-      filter: brightness(0.5) contrast(0.5);
+      filter: brightness(0.375) contrast(0.375);
     }
   }
 
@@ -126,7 +126,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     }
 
     .wizard__result {
-      animation: wizard-show 0.75s 0.25s forwards;
+      animation: wizard-show 0.75s 0.5s forwards;
     }
 
     .wizard__decor {
@@ -136,9 +136,10 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
   .wizard__close {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 1.25rem;
     right: 1.5rem;
+    z-index: 2;
 
     cursor: pointer;
     width: 1.25rem;
@@ -167,6 +168,11 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     &:hover {
       filter: brightness(80%);
     }
+
+    @media screen and (max-width: 1023px) {
+      top: 1rem;
+      right: 1rem;
+    }
   }
 
   .wizard__screen {
@@ -178,7 +184,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
     width: calc($width-content + 2rem);
     max-width: 100%;
-    margin: 4rem auto 0;
+    margin: 4.25rem auto 0;
     padding: 0.75rem 1.75rem 2.5rem;
     opacity: 0;
 
@@ -204,7 +210,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
     padding: 0;
     opacity: 0;
 
-    animation: wizard-show 1.5s 0.75s forwards;
+    animation: wizard-show 1s 0.5s forwards;
 
     &.wizard__grid--full .wizard__card:not(.wizard__card--active) {
       pointer-events: none;
@@ -291,7 +297,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
       color: $color-light;
 
-      @media screen and (max-width: 479px) {
+      @media screen and (max-width: 359px) {
         font-size: 0.5rem;
       }
     }
@@ -396,7 +402,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
     label {
       display: block;
-      margin: 0.5rem 0 0;
+      margin: 0.125rem 0 0;
       padding: 0;
 
       font-size: 0.625rem;
@@ -404,7 +410,7 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
 
       color: inherit;
 
-      @media screen and (max-width: 479px) {
+      @media screen and (max-width: 359px) {
         font-size: 0.5rem;
       }
     }
@@ -532,6 +538,10 @@ $background-form: linear-gradient(to bottom, #641F46, #000336);
       margin: 0.75rem 0 1.25rem;
       font-size: 0.9375rem;
     }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 0;
   }
 }
 
