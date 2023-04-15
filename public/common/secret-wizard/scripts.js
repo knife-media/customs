@@ -6,9 +6,9 @@
     return false;
   }
 
-  const header = document.querySelector('.header');
+  const logo = document.querySelector('.header__logo-link');
 
-  if (header === null) {
+  if (logo === null) {
     return false;
   }
 
@@ -467,7 +467,13 @@
 
   let start = 0;
 
-  header.addEventListener('click', (e) => {
+  logo.addEventListener('click', (e) => {
+    if (document.location.pathname !== '/') {
+      return;
+    }
+
+    e.preventDefault();
+
     if (++start < 3) {
       return;
     }
