@@ -468,10 +468,6 @@
   let start = 0;
 
   logo.addEventListener('click', (e) => {
-    if (document.location.pathname !== '/') {
-      return;
-    }
-
     e.preventDefault();
 
     if (++start < 3) {

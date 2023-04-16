@@ -32,7 +32,11 @@ class Knife_Customs {
      * Load secret-wizard functions
      */
     public static function inject_wizard() {
-        $version = '2.2';
+        if (!is_front_page()) {
+            return;
+        }
+
+        $version = '2.3';
 
         // Get custom slug
         $slug = 'secret-wizard';
