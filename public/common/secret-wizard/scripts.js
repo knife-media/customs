@@ -471,7 +471,7 @@
     e.preventDefault();
 
     if (++start < 3) {
-      return;
+      return window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     start = 0;
