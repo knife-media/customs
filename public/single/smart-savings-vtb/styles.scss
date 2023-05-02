@@ -1,0 +1,7 @@
+$color-accent: #d5effc;
+
+.entry-content {
+  .figure.figure--quote blockquote {
+    background-color: $color-accent;
+  }
+}
