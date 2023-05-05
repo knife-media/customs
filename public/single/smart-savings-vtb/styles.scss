@@ -5,3 +5,11 @@ $color-accent: #d5effc;
     background-color: $color-accent;
   }
 }
+
+.entry-footer .entry-footer__share {
+  display: none;
+}
+
+.entry-header .entry-header__share .share__link--twitter {
+  display: none;
+}
