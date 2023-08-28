@@ -1,0 +1,89 @@
+$color-white: #ffffff;
+
+$color-header: rgb(50, 50, 50);
+$color-content: rgb(188, 32, 75);
+$color-dimmed: rgba(0,0,0,0.5);
+
+.entry-header {
+  padding-bottom: 2rem;
+
+  color: $color-white;
+  background-color: $color-header;
+
+  .entry-header__info {
+    color: $color-white;
+  }
+
+  .entry-header__lead a {
+    color: $color-white;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 1rem;
+  }
+}
+
+.entry-content {
+  background-color: $color-content;
+  padding-bottom: 2rem;
+
+  .figure--flipper aside {
+    font-size: 1.25rem;
+
+    figure {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.125rem;
+
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    h4 {
+      margin: 1.5rem 0;
+      padding: 1rem;
+
+      font-size: 1rem;
+      line-height: 1.375;
+      background-color: rgba(0, 0, 0, 0.125);
+
+      @media screen and (max-width: 767px) {
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
+    }
+
+    h5 {
+      margin-top: 1rem;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    h6 {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+
+      @media screen and (max-width: 767px) {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+      }
+    }
+
+    p {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+  }
+}
