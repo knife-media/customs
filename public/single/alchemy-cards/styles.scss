@@ -1,0 +1,60 @@
+$color-white: #ffffff;
+
+$color-header: rgb(50, 50, 50);
+$color-content: #111;
+$color-text: #111;
+
+.entry-header {
+  color: $color-white;
+  background-color: $color-text;
+
+  .entry-header__info {
+    color: $color-white;
+  }
+}
+
+.entry-content {
+  color: $color-white;
+  background-color: $color-content;
+
+  a {
+    color: $color-white;
+  }
+
+  .figure--flipper aside {
+    color: $color-text;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+
+    &:first-child {
+      padding: 0;
+
+      @media screen and (max-width: 767px) {
+        padding: 1rem;
+      }
+    }
+
+    figure {
+      width: 100%;
+      margin: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    p {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+  }
+}
