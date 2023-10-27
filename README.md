@@ -1,6 +1,6 @@
 # Custom styles for knife.media posts and archives
 
-Auxiliary service for extending the posts and archives styles and scripts.
+Auxiliary service for extending posts and archives styles and scripts.
 
 ## Installation
 
