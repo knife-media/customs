@@ -1,0 +1,131 @@
+$color-text: #000000;
+$color-content: #ffffff;
+$color-button: #ff22a6;
+$color-accent: #ffffff;
+
+.entry-header {
+  color: $color-text;
+  background-color: $color-content;
+
+  padding-top: 4rem;
+
+  .entry-header__info {
+    display: none;
+  }
+
+  .entry-header__lead {
+    p {
+      line-height: 1.5;
+      font-size: 1.25rem;
+      font-weight: 500;
+
+      @media screen and (max-width: 767px) {
+        font-size: 1rem;
+      }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    figure {
+      width: 100%;
+    }
+  }
+
+  .entry-header__title {
+    display: block;
+
+    margin-top: 0;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-transform: uppercase;
+
+    em {
+      font-weight: 900;
+      font-family: inherit;
+    }
+
+    @media screen and (max-width: 1023px) {
+      margin-bottom: .75rem;
+      font-size: 2.5rem;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 1.5rem;
+      line-height: 1.375;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding-top: 2rem;
+  }
+}
+
+.entry-content {
+  display: block;
+
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  overflow: hidden;
+
+  color: $color-text;
+  background-color: $color-content;
+
+  .figure--frame .button {
+    display: inline-flex;
+    justify-content: center;
+
+    width: auto;
+    padding: 1rem 2rem;
+
+    color: $color-accent;
+    background-color: $color-button;
+
+    text-align: center;
+
+    font-size: 1.875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    border: none;
+    border-radius: 4px;
+
+    @media screen and (max-width: 767px) {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.25rem;
+      line-height: 1.375;
+    }
+
+    @media screen and (max-width: 479px) {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.entry-header + .entry-content {
+  padding-top: 1rem;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 0;
+  }
+}
+
+.entry-footer .entry-footer__share {
+  display: none;
+}
