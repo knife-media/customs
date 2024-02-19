@@ -43,6 +43,10 @@ $color-content: #FF4053;
 
     color: $color-black;
 
+    div {
+      width: 100%;
+    }
+
     p {
       margin-bottom: 1rem;
 
@@ -52,7 +56,7 @@ $color-content: #FF4053;
     }
 
     @media screen and (max-width: 767px) {
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       line-height: 1.5;
     }
   }
