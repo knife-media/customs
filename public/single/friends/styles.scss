@@ -1,0 +1,9 @@
+$color-black: #333;
+
+.footer {
+  color: $color-black;
+
+  .footer__logo .footer__logo-image {
+    fill: $color-black;
+  }
+}
