@@ -1,6 +1,6 @@
 $color-white: #ffffff;
 $color-text: #111;
-$color-content: #005bff;
+$color-content: #ff7bb9;
 
 .entry-header {
   padding-bottom: 2rem;
@@ -72,5 +72,9 @@ $color-content: #005bff;
 
   .figure--promo {
     width: 100%;
+  }
+
+  h6 a {
+    color: inherit;
   }
 }
