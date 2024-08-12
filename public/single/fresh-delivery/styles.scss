@@ -1,14 +1,11 @@
 $color-white: #ffffff;
 $color-text: #111;
-
-$color-header: #005bff;
-$color-content: #00bebf;
+$color-content: #005bff;
 
 .entry-header {
   padding-bottom: 2rem;
 
-  color: $color-white;
-  background-color: $color-header;
+  color: $color-text;
 
   .entry-header__info {
     color: $color-white;
